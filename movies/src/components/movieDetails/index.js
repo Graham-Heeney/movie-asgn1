@@ -7,23 +7,26 @@ import StarRate from "@mui/icons-material/StarRate";
 import NavigationIcon from "@mui/icons-material/Navigation";
 import Fab from "@mui/material/Fab";
 import Typography from "@mui/material/Typography";
-
 import Drawer from "@mui/material/Drawer";
-import MovieReviews from "../movieReviews"
-
+import MovieReviews from "../movieReviews";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
 
 const root = {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    listStyle: "none",
-    padding: 1.5,
-    margin: 0,
+  display: "flex",
+  justifyContent: "center",
+  flexWrap: "wrap",
+  listStyle: "none",
+  padding: 1.5,
+  margin: 0,
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie }) => {  // Don't miss this!
-    const [drawerOpen, setDrawerOpen] = useState(false);
+const MovieDetails = ({ movie, cast = [] }) => { // Added cast as a prop
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
   return (
     <>
       <Typography variant="h5" component="h3">
@@ -34,20 +37,18 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         {movie.overview}
       </Typography>
 
-      <Paper 
-        component="ul" 
-        sx={{...root}}
-      >
+      <Paper component="ul" sx={{ ...root }}>
         <li>
-          <Chip label="Genres" sx={{...chip}} color="primary" />
+          <Chip label="Genres" sx={{ ...chip }} color="primary" />
         </li>
         {movie.genres.map((g) => (
           <li key={g.name}>
-            <Chip label={g.name} sx={{...chip}} />
+            <Chip label={g.name} sx={{ ...chip }} />
           </li>
         ))}
       </Paper>
-      <Paper component="ul" sx={{...root}}>
+
+      <Paper component="ul" sx={{ ...root }}>
         <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`} />
         <Chip
           icon={<MonetizationIcon />}
@@ -55,7 +56,7 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
         />
         <Chip
           icon={<StarRate />}
-          label={`${movie.vote_average} (${movie.vote_count}`}
+          label={`${movie.vote_average} (${movie.vote_count})`}
         />
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
@@ -70,15 +71,50 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
           </li>
         ))}
       </Paper>
-      
+
+      {/* Top Cast Section */}
+      <Typography variant="h5" component="h3" sx={{ marginTop: 2 }}>
+        Top Cast
+      </Typography>
+      <Grid container spacing={2} sx={{ marginTop: 2 }}>
+        {cast.length > 0 ? (
+          cast.map((actor) => (
+            <Grid item xs={6} sm={4} md={2} key={actor.id}>
+              <Card>
+                <CardMedia
+                  component="img"
+                  alt={actor.name}
+                  height="150"
+                  image={
+                    actor.profile_path
+                      ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+                      : "https://via.placeholder.com/150" // Placeholder if no image
+                  }
+                />
+                <CardContent>
+                  <Typography variant="body1" align="center">
+                    {actor.name}
+                  </Typography>
+                  <Typography variant="body2" align="center">
+                    as {actor.character}
+                  </Typography>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))
+        ) : (
+          <Typography variant="body1">No cast information available.</Typography>
+        )}
+      </Grid>
+
       <Fab
         color="secondary"
         variant="extended"
-        onClick={() =>setDrawerOpen(true)}
+        onClick={() => setDrawerOpen(true)}
         sx={{
-          position: 'fixed',
-          bottom: '1em',
-          right: '1em'
+          position: "fixed",
+          bottom: "1em",
+          right: "1em",
         }}
       >
         <NavigationIcon />
@@ -87,7 +123,8 @@ const MovieDetails = ({ movie }) => {  // Don't miss this!
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />
       </Drawer>
-      </>
+    </>
   );
 };
-export default MovieDetails ;
+
+export default MovieDetails;
