@@ -1,10 +1,7 @@
-// firebase.js
-
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getAuth } from "firebase/auth";  // Import Firebase Authentication
+import { getAuth } from "firebase/auth";  
+import { getFirestore, collection, doc, setDoc, getDocs } from "firebase/firestore";  
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAD-wlX0eppKNHuOY5M5HLUczeO4ejVuzA",
   authDomain: "webappasgn1-firebase.firebaseapp.com",
@@ -15,14 +12,36 @@ const firebaseConfig = {
   measurementId: "G-YXN0J1SFYL"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Firebase Authentication
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-// Initialize Firebase Analytics
-const analytics = getAnalytics(app);
+export { auth, db };
 
-// Export the `auth` object so it can be used in other parts of the app
-export { auth };
+/*export const saveFavoriteMovie = async (movie) => {
+  const user = auth.currentUser;
+  if (!user) {
+    console.log("No user is logged in");
+    return;
+  }
+
+  const userFavoritesRef = collection(db, "favorites", user.uid);
+  
+  await setDoc(doc(userFavoritesRef, movie.id.toString()), movie);
+};
+
+export const getFavoriteMovies = async () => {
+  const user = auth.currentUser;
+  if (!user) {
+    console.log("No user is logged in");
+    return [];
+  }
+
+  const userFavoritesRef = collection(db, "favorites", user.uid);
+  
+  const snapshot = await getDocs(userFavoritesRef);
+  const favoriteMovies = snapshot.docs.map(doc => doc.data());
+
+  return favoriteMovies;
+};*/

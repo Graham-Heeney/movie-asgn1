@@ -11,26 +11,25 @@ import { useNavigate } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { auth } from "C:\Users\the1m\OneDrive - South East Technological University (Waterford Campus)\Year 3 Semester 1\Web App Development 2\movie-asgn1\movies\src\firebase.js"; // Import auth from firebase.js
-import { signOut, onAuthStateChanged } from "firebase/auth"; // Import Firebase signOut and onAuthStateChanged
-
+import { auth } from "../../firebase"; 
+import { signOut, onAuthStateChanged } from "firebase/auth"; 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [user, setUser] = useState(null); // Track the authenticated user
+  const [user, setUser] = useState(null); 
   const open = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Listen for changes in authentication state
+   
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user); // Set user if logged in, or null if logged out
+      setUser(user); 
     });
     
-    // Cleanup the listener when the component unmounts
+    
     return () => unsubscribe();
   }, []);
 
@@ -42,7 +41,7 @@ const SiteHeader = () => {
 
   const handleMenuSelect = (pageURL) => {
     navigate(pageURL, { replace: true });
-    setAnchorEl(null); // Close the menu after selection
+    setAnchorEl(null); 
   };
 
   const handleMenu = (event) => {
@@ -53,7 +52,7 @@ const SiteHeader = () => {
     signOut(auth) // Sign out the user
       .then(() => {
         console.log("Signed out successfully");
-        navigate("/"); // Redirect to home page after sign out
+        navigate("/"); 
       })
       .catch((error) => {
         console.log(error.message);
@@ -100,11 +99,11 @@ const SiteHeader = () => {
               </MenuItem>
             ))}
             {user ? (
-              <MenuItem onClick={handleSignOut}>Sign Out</MenuItem> // Show sign out option
+              <MenuItem onClick={handleSignOut}>Sign Out</MenuItem> 
             ) : (
               <>
-                <MenuItem onClick={() => navigate("/signup")}>Sign Up</MenuItem> // Show sign up option
-                <MenuItem onClick={() => navigate("/login")}>Sign In</MenuItem> // Show sign in option
+                <MenuItem onClick={() => navigate("/signup")}>Sign Up</MenuItem>
+                <MenuItem onClick={() => navigate("/login")}>Sign In</MenuItem> 
               </>
             )}
           </Menu>
