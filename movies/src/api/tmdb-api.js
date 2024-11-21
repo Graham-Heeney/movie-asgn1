@@ -106,7 +106,7 @@ export const getTopRatedMovies = (args) => {
 };
 
 export const getMovieCast = ({ queryKey }) => {
-  const [, idPart] = queryKey; // Extract the movie ID from the query key
+  const [, idPart] = queryKey; 
   const { id } = idPart;
 
   return fetch(
@@ -124,4 +124,6 @@ export const getMovieCast = ({ queryKey }) => {
       throw error;
     });
 };
+
+
 

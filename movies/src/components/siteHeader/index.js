@@ -14,6 +14,7 @@ const SiteHeader = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -32,6 +33,8 @@ const SiteHeader = () => {
       });
   };
 
+  
+
   return (
     <>
       <AppBar position="fixed" color="secondary">
@@ -42,6 +45,7 @@ const SiteHeader = () => {
           <Typography variant="h6" sx={{ marginRight: "20px" }}>
             All you ever wanted to know about Movies!
           </Typography>
+        
           <Button color="inherit" onClick={() => navigate("/")}>
             Home
           </Button>

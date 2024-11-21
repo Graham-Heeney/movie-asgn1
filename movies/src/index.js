@@ -44,6 +44,7 @@ const App = () => {
             <Route path="/movies/top-rated" element={<TopRatedMovies />} /> {/* New route */}
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+            
 
           </Routes>
         </MoviesContextProvider>
