@@ -15,11 +15,11 @@ import Avatar from '@mui/material/Avatar';
 import { MoviesContext } from "../../contexts/moviesContext";
 import { Link } from "react-router-dom";
 import img from '../../images/film-poster-placeholder.png';
-import { useTheme } from "@mui/material/styles"; // Import useTheme 
+import { useTheme } from "@mui/material/styles";
 
 export default function MovieCard({ movie, action }) {
   const { favorites, addToFavorites } = useContext(MoviesContext);
-  const theme = useTheme(); 
+  const theme = useTheme();
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -38,7 +38,7 @@ export default function MovieCard({ movie, action }) {
         maxWidth: 345,
         borderRadius: 2,
         boxShadow: 3,
-        backgroundColor: theme.palette.primary.main, // Set background to blue
+        backgroundColor: theme.palette.primary.main, 
         transition: 'transform 0.3s',
         '&:hover': { transform: 'scale(1.05)' },
       }}
@@ -57,7 +57,7 @@ export default function MovieCard({ movie, action }) {
           </Typography>
         }
         sx={{
-          backgroundColor: theme.palette.primary.main, // Keep header blue
+          backgroundColor: theme.palette.primary.main, 
         }}
       />
       <CardMedia
@@ -71,7 +71,7 @@ export default function MovieCard({ movie, action }) {
             : img
         }
       />
-      <CardContent sx={{ backgroundColor: theme.palette.primary.main }}> {/* Set background of the card tp blue */}
+      <CardContent sx={{ backgroundColor: theme.palette.primary.main }}>
         <Grid container spacing={1}>
           <Grid item xs={6}>
             <Typography variant="body2" component="p" sx={{ display: 'flex', alignItems: 'center', color: 'white' }}>
@@ -87,13 +87,34 @@ export default function MovieCard({ movie, action }) {
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions disableSpacing sx={{ backgroundColor: theme.palette.primary.main }}> 
+      <CardActions disableSpacing sx={{ backgroundColor: theme.palette.primary.main }}>
         {action(movie)}
         <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            More Info ...
-          </Button>
-        </Link>
+         <Button
+    variant="contained"  // contained for a solid button
+    size="medium"
+    color="secondary"    // Use the secondary color for better contrast with the background
+    sx={{
+      color: 'white',       // makes the text white
+      backgroundColor: 'rgba(255, 255, 255, 0.7)',  // Light background.
+      '&:hover': {
+        backgroundColor: 'rgba(255, 255, 255, 0.9)', // makes it darker when you hover.
+      },
+    }}
+  >
+    More Info ...
+  </Button>
+</Link>
+
+        <IconButton
+          onClick={handleAddToFavorite}
+          sx={{
+            color: movie.favorite ? 'red' : 'white', 
+            '&:hover': { color: 'red' }, 
+          }}
+        >
+          <FavoriteIcon />
+        </IconButton>
       </CardActions>
     </Card>
   );

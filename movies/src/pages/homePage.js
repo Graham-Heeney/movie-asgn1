@@ -1,4 +1,4 @@
-import React, { useState } from "react";  // Import useState
+import React, { useState } from "react";  
 import { getMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
@@ -8,10 +8,10 @@ import backgroundImage from "../images/pexels-megha-mangal-224592-806880.jpg";
 import { Pagination } from "@mui/material";
 
 const HomePage = (props) => {
-  const [currentPage, setCurrentPage] = useState(1);  // Initialize state for current page
+  const [currentPage, setCurrentPage] = useState(1); 
   const { data, error, isLoading, isError } = useQuery(
     ['discover', currentPage], 
-    () => getMovies(currentPage)  // Fetch movies based on currentPage
+    () => getMovies(currentPage)  
   );
 
   if (isLoading) {
@@ -28,10 +28,10 @@ const HomePage = (props) => {
   localStorage.setItem('favorites', JSON.stringify(favorites));
 
   const handlePageChange = (event, page) => {
-    setCurrentPage(page);  // Update currentPage when user changes page
+    setCurrentPage(page);  
   };
 
-  const totalPages = Math.ceil(data.total_results / 17); // Calculate total pages
+  const totalPages = Math.ceil(data.total_results / 20); 
 
   const backgroundStyle = {
     backgroundImage: `url(${backgroundImage})`,
