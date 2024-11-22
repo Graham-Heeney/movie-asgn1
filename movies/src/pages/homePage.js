@@ -4,6 +4,8 @@ import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
+import backgroundImage from "../images/pexels-megha-mangal-224592-806880.jpg";
+
 
 
 const HomePage = (props) => {
@@ -23,14 +25,26 @@ const HomePage = (props) => {
   localStorage.setItem('favorites', JSON.stringify(favorites))
   const addToFavorites = (movieId) => true 
 
-  return (
+  const backgroundStyle = {
+    backgroundImage:`url(${backgroundImage})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    minHeight: "100vh",
+    margin: 0,
+    padding: 0,
+  };
+
+  return (<div style={backgroundStyle}>
     <PageTemplate
       title="Discover Movies"
       movies={movies}
       action={(movie) => {
         return <AddToFavoritesIcon movie={movie} />
       }}
-    />
+    />    </div>
+
 );
 };
 export default HomePage;
