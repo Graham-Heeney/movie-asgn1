@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
+import backgroundImage from "../images/pexels-megha-mangal-224592-806880.jpg";
+
 
 const WriteReviewPage = (props) => {
   const location = useLocation();
@@ -22,10 +24,23 @@ const WriteReviewPage = (props) => {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
-  return (
+
+  const backgroundStyle = {
+    backgroundImage:`url(${backgroundImage})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    minHeight: "100vh",
+    margin: 0,
+    padding: 0,
+  };
+
+
+  return (<div style={backgroundStyle}>
     <PageTemplate movie={movie}>
       <ReviewForm movie={movie} />
-    </PageTemplate>
+    </PageTemplate></div>
   );
 };
 

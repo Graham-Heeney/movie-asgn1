@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { auth } from '../firebase';  
+import backgroundImage from "../images/pexels-megha-mangal-224592-806880.jpg";
+
 
 
 const Signup = () => {
@@ -26,7 +28,21 @@ const Signup = () => {
     }
   };
 
+
+  const backgroundStyle = {
+    backgroundImage:`url(${backgroundImage})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    minHeight: "100vh",
+    margin: 0,
+    padding: 0,
+  };
+
+
   return (
+    <div style={backgroundStyle}>
     <div
       style={{
         display: "flex",
@@ -107,6 +123,7 @@ const Signup = () => {
           {isSignUp ? "Already have an account? Sign In" : "Don't have an account? Sign Up"}
         </button>
       </div>
+    </div>
     </div>
   );
 };

@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import {  signInWithEmailAndPassword   } from 'firebase/auth';
 import { auth } from '../firebase';
 import { NavLink, useNavigate } from 'react-router-dom'
+import backgroundImage from "../images/pexels-megha-mangal-224592-806880.jpg";
+
 
 const Login = () => {
     const navigate = useNavigate();
@@ -24,9 +26,19 @@ const Login = () => {
 
     }
 
+    const backgroundStyle = {
+        backgroundImage:`url(${backgroundImage})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+        margin: 0,
+        padding: 0,
+      };
 
-    return(
-        <div
+
+    return(<div style={backgroundStyle}>   <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -106,6 +118,7 @@ const Login = () => {
             </NavLink>
           </p>
         </div>
+      </div>
       </div>
     );
   };

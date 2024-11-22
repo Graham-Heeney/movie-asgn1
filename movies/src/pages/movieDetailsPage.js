@@ -5,6 +5,8 @@ import PageTemplate from "../components/templateMoviePage";
 import { getMovie, getMovieCast } from "../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from "../components/spinner";
+import backgroundImage from "../images/pexels-megha-mangal-224592-806880.jpg";
+
 
 const MoviePage = (props) => {
   const { id } = useParams();
@@ -33,9 +35,20 @@ const MoviePage = (props) => {
     return <h1>{castError.message}</h1>;
   }
 
-  const topCast = castData.cast.slice(0, 5); // Get the top 5 actors
+  const topCast = castData.cast.slice(0, 5);
 
-  return (
+  const backgroundStyle = {
+    backgroundImage:`url(${backgroundImage})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    minHeight: "100vh",
+    margin: 0,
+    padding: 0,
+  };
+
+  return (<div style={backgroundStyle}>
     <>
       {movie ? (
         <>
@@ -48,6 +61,7 @@ const MoviePage = (props) => {
         <p>Waiting for movie details</p>
       )}
     </>
+    </div>
   );
 };
 

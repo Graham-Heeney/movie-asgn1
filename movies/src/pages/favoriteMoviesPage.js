@@ -6,6 +6,8 @@ import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner'
 import RemoveFromFavorites from "../components/cardIcons/removeFromFavorites";
 import WriteReview from "../components/cardIcons/writeReview";
+import backgroundImage from "../images/pexels-megha-mangal-224592-806880.jpg";
+
 
 const FavoriteMoviesPage = () => {
   const {favorites: movieIds } = useContext(MoviesContext);
@@ -33,7 +35,19 @@ const FavoriteMoviesPage = () => {
 
   const toDo = () => true;
 
-  return (
+
+  const backgroundStyle = {
+    backgroundImage:`url(${backgroundImage})`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundAttachment: "fixed",
+    backgroundPosition: "center",
+    minHeight: "100vh",
+    margin: 0,
+    padding: 0,
+  };
+
+  return (<div style={backgroundStyle}>
     <PageTemplate
       title="Favorite Movies"
       movies={movies}
@@ -45,7 +59,7 @@ const FavoriteMoviesPage = () => {
           </>
         );
       }}
-    />
+    /></div>
   );
 };
 
