@@ -19,29 +19,3 @@ const db = getFirestore(app);
 
 export { auth, db };
 
-/*export const saveFavoriteMovie = async (movie) => {
-  const user = auth.currentUser;
-  if (!user) {
-    console.log("No user is logged in");
-    return;
-  }
-
-  const userFavoritesRef = collection(db, "favorites", user.uid);
-  
-  await setDoc(doc(userFavoritesRef, movie.id.toString()), movie);
-};
-
-export const getFavoriteMovies = async () => {
-  const user = auth.currentUser;
-  if (!user) {
-    console.log("No user is logged in");
-    return [];
-  }
-
-  const userFavoritesRef = collection(db, "favorites", user.uid);
-  
-  const snapshot = await getDocs(userFavoritesRef);
-  const favoriteMovies = snapshot.docs.map(doc => doc.data());
-
-  return favoriteMovies;
-};*/

@@ -1,32 +1,40 @@
-import React from "react";
+import React, { useState } from "react";  // Import useState
 import { getMovies } from "../api/tmdb-api";
 import PageTemplate from '../components/templateMovieListPage';
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
-import AddToFavoritesIcon from '../components/cardIcons/addToFavorites'
+import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
 import backgroundImage from "../images/pexels-megha-mangal-224592-806880.jpg";
-
-
+import { Pagination } from "@mui/material";
 
 const HomePage = (props) => {
-
-  const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
+  const [currentPage, setCurrentPage] = useState(1);  // Initialize state for current page
+  const { data, error, isLoading, isError } = useQuery(
+    ['discover', currentPage], 
+    () => getMovies(currentPage)  // Fetch movies based on currentPage
+  );
 
   if (isLoading) {
-    return <Spinner />
+    return <Spinner />;
   }
 
   if (isError) {
-    return <h1>{error.message}</h1>
-  }  
+    return <h1>{error.message}</h1>;
+  }
+
   const movies = data.results;
 
-  const favorites = movies.filter(m => m.favorite)
-  localStorage.setItem('favorites', JSON.stringify(favorites))
-  const addToFavorites = (movieId) => true 
+  const favorites = movies.filter((m) => m.favorite);
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+
+  const handlePageChange = (event, page) => {
+    setCurrentPage(page);  // Update currentPage when user changes page
+  };
+
+  const totalPages = Math.ceil(data.total_results / 17); // Calculate total pages
 
   const backgroundStyle = {
-    backgroundImage:`url(${backgroundImage})`,
+    backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundAttachment: "fixed",
@@ -36,15 +44,28 @@ const HomePage = (props) => {
     padding: 0,
   };
 
-  return (<div style={backgroundStyle}>
-    <PageTemplate
-      title="Discover Movies"
-      movies={movies}
-      action={(movie) => {
-        return <AddToFavoritesIcon movie={movie} />
-      }}
-    />    </div>
+  return (
+    <>
+      <div style={backgroundStyle}>
+        <PageTemplate
+          title="Discover Movies"
+          movies={movies}
+          action={(movie) => {
+            return <AddToFavoritesIcon movie={movie} />;
+          }}
+        />
+      </div>
 
-);
+      <Pagination
+        style={{ marginTop: '25px', display: 'flex', justifyContent: 'center' }}
+        count={totalPages}
+        color="secondary"
+        onChange={handlePageChange} 
+        page={currentPage}
+        size="large"
+      />
+    </>
+  );
 };
+
 export default HomePage;
