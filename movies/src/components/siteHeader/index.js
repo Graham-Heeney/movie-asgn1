@@ -46,15 +46,20 @@ const SiteHeader = () => {
           </Box>
 
           <Box sx={{ display: "flex", gap: "15px", alignItems: "center" }}>
-            <Button color="inherit" onClick={() => navigate("/")}>
-              Home
-            </Button>
-            <Button color="inherit" onClick={() => navigate("/movies/favorites")}>
-              Favorites
-            </Button>
-            <Button color="inherit" onClick={() => navigate("/movies/top-rated")}>
-              Top Rated Movies
-            </Button>
+  <Button color="inherit" onClick={() => navigate("/")}>
+    Home
+  </Button>
+  <Button color="inherit" onClick={() => navigate("/movies/favorites")}>
+    Favorites
+  </Button>
+  <Button color="inherit" onClick={() => navigate("/movies/top-rated")}>
+    Top Rated Movies
+  </Button>
+  <Button color="inherit" onClick={() => navigate("/movies/now-playing")}>
+    Now Playing Movies
+  </Button>
+
+
 
             {user ? (
               <Button color="inherit" onClick={handleSignOut}>

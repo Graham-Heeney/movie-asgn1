@@ -34,6 +34,7 @@ const HomePage = (props) => {
   const totalPages = Math.ceil(data.total_results / 20); 
 
   const backgroundStyle = {
+    position: 'relative',
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
@@ -43,6 +44,7 @@ const HomePage = (props) => {
     margin: 0,
     padding: 0,
   };
+  
 
   return (
     <>

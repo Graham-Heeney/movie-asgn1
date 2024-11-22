@@ -34,7 +34,7 @@ const TopRatedMovies = (props) => {
     setCurrentPage(page);
   };
 
-  const totalPages = Math.ceil(data.total_results / 20); // Adjust based on your API's results per page
+  const totalPages = Math.ceil(data.total_results / 20); 
 
   const backgroundStyle = {
     backgroundImage: `url(${backgroundImage})`,

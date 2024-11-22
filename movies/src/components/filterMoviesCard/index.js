@@ -1,4 +1,4 @@
-import React, {useState, useEffect}  from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -13,23 +13,17 @@ import img from '../../images/pexels-dziana-hasanbekava-5480827.jpg'
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
+import { useTheme } from "@mui/material/styles"; 
 
-
-
-
-
-
-
-const formControl = 
-  {
-    margin: 1,
-    minWidth: 220,
-    backgroundColor: "rgb(255, 255, 255)"
-  };
+const formControl = {
+  margin: 1,
+  minWidth: 220,
+  backgroundColor: "rgb(255, 255, 255)"
+};
 
 export default function FilterMoviesCard(props) {
-
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
+  const theme = useTheme(); 
 
   if (isLoading) {
     return <Spinner />;
@@ -39,13 +33,13 @@ export default function FilterMoviesCard(props) {
     return <h1>{error.message}</h1>;
   }
   const genres = data.genres;
-  if (genres[0].name !== "All"){
+  if (genres[0].name !== "All") {
     genres.unshift({ id: "0", name: "All" });
   }
 
   const handleChange = (e, type, value) => {
     e.preventDefault();
-    props.onUserInput(type, value); // NEW
+    props.onUserInput(type, value); 
   };
 
   const handleTextChange = (e, props) => {
@@ -57,34 +51,39 @@ export default function FilterMoviesCard(props) {
   };
 
   return (
-    <Card 
+    <Card
       sx={{
-        backgroundColor: "rgb(204, 204, 0)"
-      }} 
-      variant="outlined">
-      <CardContent>
+        backgroundColor: theme.palette.primary.main,
+        borderRadius: 2, 
+        boxShadow: 3, 
+        transition: 'transform 0.3s',
+        '&:hover': { transform: 'scale(1.05)' }, 
+      }}
+      variant="outlined"
+    >
+      <CardContent sx={{ color: 'white' }}>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
           Filter the movies.
         </Typography>
         <TextField
-        sx={{...formControl}}
-        id="filled-search"
-        label="Search field"
-        type="search"
-        variant="filled"
-        value={props.titleFilter}
-        onChange={handleTextChange}
-    />
-        <FormControl sx={{...formControl}}>
+          sx={{ ...formControl, backgroundColor: 'rgba(255, 255, 255, 0.8)' }}
+          id="filled-search"
+          label="Search field"
+          type="search"
+          variant="filled"
+          value={props.titleFilter}
+          onChange={handleTextChange}
+        />
+        <FormControl sx={{ ...formControl, backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
           <InputLabel id="genre-label">Genre</InputLabel>
           <Select
-           labelId="genre-label"
-          id="genre-select"
-           defaultValue=""
-           value={props.genreFilter}
-          onChange={handleGenreChange}
-              >
+            labelId="genre-label"
+            id="genre-select"
+            defaultValue=""
+            value={props.genreFilter}
+            onChange={handleGenreChange}
+          >
             {genres.map((genre) => {
               return (
                 <MenuItem key={genre.id} value={genre.id}>
@@ -96,15 +95,18 @@ export default function FilterMoviesCard(props) {
         </FormControl>
       </CardContent>
       <CardMedia
-        sx={{ height: 300 }}
+        sx={{
+          height: 300,
+          objectFit: 'cover',
+          borderTop: `2px solid ${theme.palette.primary.light}`,
+        }}
         image={img}
         title="Filter"
       />
-      <CardContent>
+      <CardContent sx={{ color: 'white' }}>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
           Filter the movies.
-          <br />
         </Typography>
       </CardContent>
     </Card>
