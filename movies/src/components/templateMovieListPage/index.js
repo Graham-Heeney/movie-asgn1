@@ -24,14 +24,11 @@ function MovieListPageTemplate({ movies, title, action }) {
 
   return (
     <Grid container spacing={2} style={{ padding: "15px" }}>
-      {/* Header Section */}
       <Grid item xs={12}>
         <Header title={title} />
       </Grid>
 
-      {/* Main Content Section (Filter + Movie List) */}
       <Grid container spacing={2}>
-        {/* Left: Filter Card */}
         <Grid item xs={12} sm={4} md={3} lg={3} sx={{ padding: "10px" }}>
           <FilterCard
             onUserInput={handleChange}
@@ -40,7 +37,6 @@ function MovieListPageTemplate({ movies, title, action }) {
           />
         </Grid>
 
-        {/* Right: Movie List */}
         <Grid item xs={12} sm={8} md={9} lg={9}>
           <MovieList action={action} movies={displayedMovies} />
         </Grid>

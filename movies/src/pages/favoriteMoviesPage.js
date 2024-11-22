@@ -12,7 +12,6 @@ import backgroundImage from "../images/pexels-megha-mangal-224592-806880.jpg";
 const FavoriteMoviesPage = () => {
   const {favorites: movieIds } = useContext(MoviesContext);
 
-  // Create an array of queries and run in parallel.
   const favoriteMovieQueries = useQueries(
     movieIds.map((movieId) => {
       return {
@@ -21,7 +20,6 @@ const FavoriteMoviesPage = () => {
       };
     })
   );
-  // Check if any of the parallel queries is still loading.
   const isLoading = favoriteMovieQueries.find((m) => m.isLoading === true);
 
   if (isLoading) {

@@ -15,9 +15,11 @@ import Avatar from '@mui/material/Avatar';
 import { MoviesContext } from "../../contexts/moviesContext";
 import { Link } from "react-router-dom";
 import img from '../../images/film-poster-placeholder.png';
+import { useTheme } from "@mui/material/styles"; // Import useTheme 
 
 export default function MovieCard({ movie, action }) {
   const { favorites, addToFavorites } = useContext(MoviesContext);
+  const theme = useTheme(); 
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -31,7 +33,16 @@ export default function MovieCard({ movie, action }) {
   };
 
   return (
-    <Card sx={{ maxWidth: 345, borderRadius: 2, boxShadow: 3, transition: 'transform 0.3s', '&:hover': { transform: 'scale(1.05)' } }}>
+    <Card
+      sx={{
+        maxWidth: 345,
+        borderRadius: 2,
+        boxShadow: 3,
+        backgroundColor: theme.palette.primary.main, // Set background to blue
+        transition: 'transform 0.3s',
+        '&:hover': { transform: 'scale(1.05)' },
+      }}
+    >
       <CardHeader
         avatar={
           movie.favorite ? (
@@ -41,36 +52,42 @@ export default function MovieCard({ movie, action }) {
           ) : null
         }
         title={
-          <Typography variant="h6" component="p" sx={{ fontWeight: 'bold' }}>
+          <Typography variant="h6" component="p" sx={{ fontWeight: 'bold', color: 'white' }}> 
             {movie.title}
           </Typography>
         }
+        sx={{
+          backgroundColor: theme.palette.primary.main, // Keep header blue
+        }}
       />
       <CardMedia
-        sx={{ height: 400, objectFit: 'cover' }}
+        sx={{
+          height: 400,
+          objectFit: 'cover',
+        }}
         image={
           movie.poster_path
             ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
             : img
         }
       />
-      <CardContent>
+      <CardContent sx={{ backgroundColor: theme.palette.primary.main }}> {/* Set background of the card tp blue */}
         <Grid container spacing={1}>
           <Grid item xs={6}>
-            <Typography variant="body2" component="p" sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography variant="body2" component="p" sx={{ display: 'flex', alignItems: 'center', color: 'white' }}>
               <CalendarIcon fontSize="small" sx={{ mr: 1 }} />
               {movie.release_date}
             </Typography>
           </Grid>
           <Grid item xs={6}>
-            <Typography variant="body2" component="p" sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography variant="body2" component="p" sx={{ display: 'flex', alignItems: 'center', color: 'white' }}>
               <StarRateIcon fontSize="small" sx={{ mr: 1 }} />
               {movie.vote_average}
             </Typography>
           </Grid>
         </Grid>
       </CardContent>
-      <CardActions disableSpacing>
+      <CardActions disableSpacing sx={{ backgroundColor: theme.palette.primary.main }}> 
         {action(movie)}
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">

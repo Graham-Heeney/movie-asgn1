@@ -5,31 +5,50 @@ import Paper from "@mui/material/Paper";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "@mui/material/styles"; 
 
-
-const Header = (props ) => {
-  const title = props.title
+const Header = (props) => {
+  const title = props.title;
   const navigate = useNavigate();
+  const theme = useTheme();
 
   return (
-    <Paper 
-      component="div" 
+    <Paper
+      component="div"
       sx={{
         display: "flex",
         justifyContent: "space-around",
         flexWrap: "wrap",
-        marginBottom: 1.5,
+        backgroundColor: theme.palette.primary.main, 
+        padding: "10px", 
       }}
+    >
+      <IconButton
+        aria-label="go back"
+        onClick={() => navigate(-1)}
+        sx={{ color: "white" }}
       >
-        <IconButton aria-label="go back" onClick={() => navigate(-1)}>
-        <ArrowBackIcon color="primary" fontSize="large" />
+        <ArrowBackIcon fontSize="large" />
       </IconButton>
 
-      <Typography variant="h4" component="h3">
+      <Typography
+        variant="h4"
+        component="h3"
+        sx={{
+          color: "white", 
+          textAlign: "center",
+          flex: 1,
+        }}
+      >
         {title}
       </Typography>
-      <IconButton aria-label="go forward" onClick={() => navigate(+1)}>
-        <ArrowForwardIcon color="primary" fontSize="large" />
+
+      <IconButton
+        aria-label="go forward"
+        onClick={() => navigate(+1)}
+        sx={{ color: "white" }} 
+      >
+        <ArrowForwardIcon fontSize="large" />
       </IconButton>
     </Paper>
   );
