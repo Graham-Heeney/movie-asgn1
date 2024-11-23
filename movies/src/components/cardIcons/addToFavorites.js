@@ -5,10 +5,12 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const AddToFavoritesIcon = ({ movie }) => {
   const context = useContext(MoviesContext);
+  
 
   const handleAddToFavorites = (e) => {
     e.preventDefault();
     context.addToFavorites(movie);
+    
   };
 
   return (

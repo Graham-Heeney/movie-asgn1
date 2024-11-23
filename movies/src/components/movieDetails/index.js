@@ -24,7 +24,7 @@ const root = {
 };
 const chip = { margin: 0.5 };
 
-const MovieDetails = ({ movie, cast = [] }) => { // Added cast as a prop
+const MovieDetails = ({ movie, cast = [] }) => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
@@ -72,7 +72,7 @@ const MovieDetails = ({ movie, cast = [] }) => { // Added cast as a prop
         ))}
       </Paper>
 
-      {/* Top Cast Section */}
+     
       <Typography variant="h5" component="h3" sx={{ marginTop: 2 }}>
         Top Cast
       </Typography>
@@ -88,7 +88,7 @@ const MovieDetails = ({ movie, cast = [] }) => { // Added cast as a prop
                   image={
                     actor.profile_path
                       ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
-                      : "https://via.placeholder.com/150" // Placeholder if no image
+                      : "https://via.placeholder.com/150" 
                   }
                 />
                 <CardContent>

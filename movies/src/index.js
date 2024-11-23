@@ -15,7 +15,6 @@ import Signup from "./pages/signupPage";
 import Login from "./pages/loginPage";
 import NowPlayingMovies from './pages/nowPlayingPage';
 
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

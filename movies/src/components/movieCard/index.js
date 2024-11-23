@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import img from '../../images/film-poster-placeholder.png';
 import { useTheme } from "@mui/material/styles";
 
+
 export default function MovieCard({ movie, action }) {
   const { favorites, addToFavorites } = useContext(MoviesContext);
   const theme = useTheme();

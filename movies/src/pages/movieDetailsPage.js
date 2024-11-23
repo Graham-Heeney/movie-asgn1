@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import MovieDetails from "../components/movieDetails/";
+import MovieDetails from "../components/movieDetails";
 import PageTemplate from "../components/templateMoviePage";
 import { getMovie, getMovieCast } from "../api/tmdb-api";
 import { useQuery } from "react-query";
@@ -11,13 +11,11 @@ import backgroundImage from "../images/pexels-megha-mangal-224592-806880.jpg";
 const MoviePage = (props) => {
   const { id } = useParams();
 
-  // Fetch movie details
   const { data: movie, error, isLoading, isError } = useQuery(
     ["movie", { id }],
     getMovie
   );
 
-  // Fetch cast details
   const { data: castData, error: castError, isLoading: castLoading } = useQuery(
     ["movieCast", { id }],
     getMovieCast
@@ -53,6 +51,7 @@ const MoviePage = (props) => {
       {movie ? (
         <>
           <PageTemplate movie={movie}>
+            
             <MovieDetails movie={movie} cast = {topCast} />
            
           </PageTemplate>
