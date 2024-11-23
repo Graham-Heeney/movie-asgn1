@@ -39,6 +39,7 @@ export default function MovieCard({ movie, action }) {
         borderRadius: 2,
         boxShadow: 3,
         backgroundColor: theme.palette.primary.main, 
+        margin: '12px',
         transition: 'transform 0.3s',
         '&:hover': { transform: 'scale(1.05)' },
       }}

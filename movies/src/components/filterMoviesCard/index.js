@@ -56,6 +56,7 @@ export default function FilterMoviesCard(props) {
         backgroundColor: theme.palette.primary.main,
         borderRadius: 2, 
         boxShadow: 3, 
+        margin: '15px',
         transition: 'transform 0.3s',
         '&:hover': { transform: 'scale(1.05)' }, 
       }}
