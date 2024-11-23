@@ -28,15 +28,12 @@ Ensure Firebase is installed locally. Here is how to do it using npm:
 
 ## API endpoints.
 
-
-e.g.
 + Top Rated Movies:  /movie/top_rated — Retrieves a list of top-rated movies.
 + Movie Cast:  /movie/:id/cast — Fetches the cast details for a specific movie.
 + Now Playing Movies:  /movie/now_playing — Displays a list of movies that are currently playing in theaters.
 
 ## Routing.
 
-[ List the __new routes__ supported by your app and state the associated page.]
 
 + /movies/favorites: Displays a list of the user's favorite movies.
 + /movies/top-rated: Displays a list of top-rated movies.
@@ -45,7 +42,7 @@ e.g.
 + /movies/now-playing: Displays a list of movies currently playing in cinemas.
 
 
-## Independent learning (If relevant).
+## Independent learning .
 
  + Pagination: pagination allows a user to select a specific page out of a collection of pages. this is useful when it comes to large adatsets. the endpoints had to be fetched with pagination in mind it wasnt just done on the page file.
  https://mui.com/material-ui/react-pagination/
