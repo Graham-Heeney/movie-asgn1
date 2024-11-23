@@ -4,24 +4,30 @@ Name: [Graham-Heeney]
 
 ## Overview.
 
-[This project demonstrates the use of react with the TMDB API. Displaying data from an outside database with parameterized endpoints and static enpoints and getting them to be compatible with our react app is the goal of this project.]
+This project demonstrates the use of react with the TMDB API. Displaying data from an outside database with parameterized endpoints and static enpoints and getting them to be compatible with our react app is the goal of this project.
 
 ### Features.
-[ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
+
  
 + Top-Rated endpoint
-+ Movie Cast enpoint
++ Movie Cast endpoint
 + Now Playing endpoint
 + Pagination
 + Firebase authorization
++ New theme
+
 
 ## Setup requirements.
 
-[ Outline any non-standard setup steps necessary to run your app locally after cloning the repo.]
+Ensure Firebase is installed locally. Here is how to do it using npm:
+
+1. Install Firebase:
+   ```bash
+   $ npm install --save firebase
+
 
 ## API endpoints.
 
-[ List the __additional__ TMDB endpoints used, giving the description and pathname for each one.] 
 
 e.g.
 + Top Rated Movies:  /movie/top_rated — Retrieves a list of top-rated movies.
@@ -51,3 +57,5 @@ e.g.
  https://clouddevs.com/react/usehover-hook/
  https://developer.mozilla.org/en-US/docs/Glossary/Flexbox
  https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model
+ https://mui.com/customization/theming/
+ https://styled-components.com/docs/tooling#styled-theming
