@@ -1,5 +1,4 @@
-
-//"page" added in for pagination.
+// Fetch movies with pagination support (page parameter)
 export const getMovies = (page) => {
   return fetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=${page}`
@@ -16,9 +15,8 @@ export const getMovies = (page) => {
   });
 };
 
-
+// Fetch details of a specific movie using its ID
 export const getMovie = (args) => {
-  //console.log(args)
   const [, idPart] = args.queryKey;
   const { id } = idPart;
   return fetch(
@@ -36,6 +34,7 @@ export const getMovie = (args) => {
  });
 };
 
+// Fetch movie genres
 export const getGenres = () => {
   return fetch(
     "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
@@ -54,6 +53,7 @@ export const getGenres = () => {
  });
 };
 
+// Fetch images of a specific movie using its ID
 export const getMovieImages = ({ queryKey }) => {
   const [, idPart] = queryKey;
   const { id } = idPart;
@@ -72,6 +72,7 @@ export const getMovieImages = ({ queryKey }) => {
  });
 };
 
+// Fetch reviews of a specific movie using its ID
 export const getMovieReviews = ({ queryKey }) => {
   const [, idPart] = queryKey;
   const { id } = idPart;
@@ -90,8 +91,7 @@ export const getMovieReviews = ({ queryKey }) => {
  });
 };
 
-
-
+// Fetch top-rated movies with pagination support
 export const getTopRatedMovies = (page) => {
   return fetch(
     `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_TMDB_KEY}&page=${page}`
@@ -109,7 +109,7 @@ export const getTopRatedMovies = (page) => {
     });
 };
 
-
+// Fetch cast members of a specific movie using its ID
 export const getMovieCast = ({ queryKey }) => {
   const [, idPart] = queryKey; 
   const { id } = idPart;
@@ -130,8 +130,7 @@ export const getMovieCast = ({ queryKey }) => {
     });
 };
 
-
-
+// Fetch movies that are currently playing in theaters with pagination support
 export const getNowPlayingMovies = (page) => {
   return fetch(
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=true&include_video=true&page=${page}`

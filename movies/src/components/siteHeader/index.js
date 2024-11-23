@@ -1,36 +1,39 @@
-import React, { useState, useEffect } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-import { auth } from "../../firebase";
-import { signOut, onAuthStateChanged } from "firebase/auth";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
+import React, { useState, useEffect } from "react"; // React and hooks
+import AppBar from "@mui/material/AppBar"; // MUI AppBar component for the header
+import Toolbar from "@mui/material/Toolbar"; // MUI Toolbar component
+import Typography from "@mui/material/Typography"; // MUI Typography for text
+import Button from "@mui/material/Button"; // MUI Button for actions
+import { useNavigate } from "react-router-dom"; // React Router hook for navigation
+import { styled } from "@mui/material/styles"; // MUI styled component
+import { auth } from "../../firebase"; // Firebase auth module
+import { signOut, onAuthStateChanged } from "firebase/auth"; // Firebase authentication methods
+import Box from "@mui/material/Box"; // MUI Box for layout
+import Container from "@mui/material/Container"; // MUI Container for responsive layout
 
+// Styled component for the AppBar offset
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader = () => {
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate();
+  const [user, setUser] = useState(null); // State for managing user authentication status
+  const navigate = useNavigate(); // Hook for navigation
 
+  // Set up authentication state listener
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+      setUser(user); // Update user state on authentication change
     });
-    return () => unsubscribe();
+    return () => unsubscribe(); // Clean up the listener on component unmount
   }, []);
 
+  // Handle user sign out
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
         console.log("Signed out successfully");
-        navigate("/");
+        navigate("/"); // Navigate to homepage on successful sign-out
       })
       .catch((error) => {
-        console.log(error.message);
+        console.log(error.message); // Log any error that occurs during sign out
       });
   };
 
@@ -42,25 +45,24 @@ const SiteHeader = () => {
             <Typography variant="h4" sx={{ flexGrow: 1, fontWeight: "bold" }}>
               Graham's TMDB Client
             </Typography>
-          
           </Box>
 
           <Box sx={{ display: "flex", gap: "15px", alignItems: "center" }}>
-  <Button color="inherit" onClick={() => navigate("/")}>
-    Home
-  </Button>
-  <Button color="inherit" onClick={() => navigate("/movies/favorites")}>
-    Favorites
-  </Button>
-  <Button color="inherit" onClick={() => navigate("/movies/top-rated")}>
-    Top Rated Movies
-  </Button>
-  <Button color="inherit" onClick={() => navigate("/movies/now-playing")}>
-    Now Playing Movies
-  </Button>
+            {/* Navigation buttons */}
+            <Button color="inherit" onClick={() => navigate("/")}>
+              Home
+            </Button>
+            <Button color="inherit" onClick={() => navigate("/movies/favorites")}>
+              Favorites
+            </Button>
+            <Button color="inherit" onClick={() => navigate("/movies/top-rated")}>
+              Top Rated Movies
+            </Button>
+            <Button color="inherit" onClick={() => navigate("/movies/now-playing")}>
+              Now Playing Movies
+            </Button>
 
-
-
+            {/* Conditionally render buttons based on user authentication */}
             {user ? (
               <Button color="inherit" onClick={handleSignOut}>
                 Sign Out
@@ -78,7 +80,7 @@ const SiteHeader = () => {
           </Box>
         </Toolbar>
       </AppBar>
-      <Offset />
+      <Offset /> {/* Offset to prevent content from being hidden under the AppBar */}
     </>
   );
 };
