@@ -50,7 +50,7 @@ Ensure Firebase is installed locally. Here is how to do it using npm:
  + Firebase: Firebase was used to create a login and signup system for the app. Firebase was installed as a whole, as there were initial attempts to use the Firestore database to save user inputs (e.g., saving favorites to an account). However, the implementation of Firestore was cut out, but the use of its authentication is still in place. You can view the registered accounts on the Firebase website.
  https://firebase.google.com/
 
- + CSS: while the use of css may not have been required as such, the use if it allowed me to custimise my project in better detail e.g. adding a hover feature over the movie cards. there was other bits of css to allow me to make the app look the way i want. references for some of these are below.
+ + Custimisation: The use of sx, mui and cssallowed me to custimise my project in better detail e.g. adding a hover feature over the movie cards. there was other bits of custimisation to allow me to make the app look the way i want. references for some of these are below.
  https://clouddevs.com/react/usehover-hook/
  https://developer.mozilla.org/en-US/docs/Glossary/Flexbox
  https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model
